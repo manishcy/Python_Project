@@ -21,6 +21,13 @@ pipeline:
             steps:
               - step:
                   type: Run
+                  name: Install Dependencies
+                  identifier: Install_Dependencies
+                  spec:
+                    shell: Sh
+                    command: pip install -r requirements.txt
+              - step:
+                  type: Run
                   name: Build
                   identifier: Build
                   spec:
@@ -31,5 +38,7 @@ pipeline:
             arch: Amd64
           runtime:
             type: Cloud
-            spec: {}
+            spec:
+              container:
+                image: python:3.9
         type: CI
